@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Listing</title>
+</head> -->
+<% layout("/layouts/boilerplate")-%>
+
+    <body>
+
+        <h3 class="mt-4 offset-md-5"> Edit Your Listing</h3>
+        <div class="row">
+            <div class="col-8 offset-2">
+        <form method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" >
+            <div class="mb-3">
+                <label for="title" class="form-label">Title : </label>
+                <input class="form-control" type="text" name="listing[title]" id="" value="<%=listing.title%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description : </label>
+                <textarea class="form-control" rows="5" cols="50" type="text" name="listing[description]"
+                    id="" required><%=listing.description%></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image : </label>
+                <input class="form-control" type="text" name="listing[image]" id="" value="<%=listing.image%>" required>
+            </div>
+            <div class="row">
+            <div class="mb-3 col-4">
+                <label for="price" class="form-label">Price : </label>
+                <input class="form-control" type="number" name="listing[price]" id="" value="<%=listing.price%>" required>
+            </div>
+            <div class="mb-3 col-8" >
+                <label for="location" class="form-label">Location : </label>
+                <input class="form-control" type="text" name="listing[location]" id="" value="<%=listing.location%>" required>
+            </div>
+        </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country : </label>
+                <input class="form-control" type="text" name="listing[country]" id="" value="<%=listing.country%>" required>
+            </div>
+            <button class=" mt-3 mb-3 btn btn-dark">Edit</button>
+        </form>
+    </div>
+    </div>
+    </body>
+    <!-- </html> -->
