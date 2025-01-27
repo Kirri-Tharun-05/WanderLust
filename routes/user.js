@@ -43,6 +43,7 @@ router.post("/login",saveRedirectUrl,passport.authenticate("local",{failureRedir
     res.redirect(redirectUrl);
 });
 
+
 // Logout page
 
 router.get("/logout",(req,res)=>{
