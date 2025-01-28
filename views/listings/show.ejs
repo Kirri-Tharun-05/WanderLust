@@ -9,17 +9,25 @@
 <% layout("/layouts/boilerplate")-%>
     <div class="row">
         <div class="col-8 offset-3">
-            <h3 class="mt-3 mb-3"><%=listing.title%></h3>
+            <h3 class="mt-3 mb-3">
+                <%=listing.title%>
+            </h3>
         </div>
         <div class="card col-6 offset-3 listing-card">
-            <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing_image">
+            <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing_image">
             <div class="card-body">
                 <br>
                 <p class="card-text"><i>Owned by <%= listing.owner.username%></i> </p>
-                <p class="card-text"><%=listing.description%></p>
+                <p class="card-text">
+                    <%=listing.description%>
+                </p>
                 <p class="card-text">&#x20B9;<%=listing.price.toLocaleString('en-in')%><br></p>
-                <p class="card-text"><%=listing.location%><br></p>
-                <p class="card-text"><%=listing.country%><br></p>                    
+                <p class="card-text">
+                    <%=listing.location%><br>
+                </p>
+                <p class="card-text">
+                    <%=listing.country%><br>
+                </p>
                 </p>
             </div>
         </div>
@@ -39,62 +47,126 @@
     </div>
 
     <%if(currUser && listing.owner._id.equals(currUser._id)){%>
-    <div class="btns offset-3 mb-3">
+        <div class="btns offset-3 mb-3">
             <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark">Edit the Listing</a>
             <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
                 <button class="btn btn-dark offset-2">Delete</button>
             </form>
-    </div>
-    <%}%>
-<!-- Review Section -->
-<div class="offset-3">
-    <hr>
-    <% if(currUser){%>
-        <h4>Leave a Review</h4>
-        <form action="/listings/<%=listing._id%>/reviews" method="POST" novalidate class="needs-validation">
-            <!-- <div class="mb-3 mt-3">
+        </div>
+        <%}%>
+            <!-- Review Section -->
+            <div class="offset-3">
+                <hr>
+                <% if(currUser){%>
+                    <h4>Leave a Review</h4>
+                    <form action="/listings/<%=listing._id%>/reviews" method="POST" novalidate class="needs-validation">
+                        <!-- <div class="mb-3 mt-3">
                 <label for="rating" class="form-lable">Rating</label>
                 <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range ">
-            </div> -->
-            <div class="mb-3 mt-3">
-                <label for="rating" class="form-lable">Rating</label>
-            <fieldset class="starability-slot">
-                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                <label for="first-rate5" title="Amazing">5 stars</label>
-              </fieldset>
-              </div>
-            <div class="mb-3 mt-3">
-                <label for="comment" class="form-lable">Comment</label>
-                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
-                <div class="invalid-feedback">Please submit some comments for review </div>
+                </div> -->
+                        <div class="mb-3 mt-3">
+                            <label for="rating" class="form-lable">Rating</label>
+                            <fieldset class="starability-slot">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                    checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="comment" class="form-lable">Comment</label>
+                            <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control"
+                                required></textarea>
+                            <div class="invalid-feedback">Please submit some comments for review </div>
+                        </div>
+                        <button class="btn btn-outline-dark">Submit</button>
+                    </form>
+                    <hr>
+                    <%}%>
+                        <%if(listing.reviews.length>0) {%>
+                            <div class="row">
+                                <h4> All Reviews </h4>
+                                <%for(review of listing.reviews){%>
+                                    <div class="card col-5 ms-3 mb-3">
+                                        <div class="card-body mt-3">
+                                            <h5 class="card-title">
+                                                <%=review.author.username%>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%=review.comment%>
+                                            </p>
+                                            <!-- <p class="card-text"> star</p> -->
+                                            <p class="starability-result card-text" data-rating="<%=review.rating%>">
+                                            </p>
+                                        </div>
+                                        <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                            method="POST" class="mb-3 text-end">
+                                            <button class="btn btn-sm btn-dark">Delete</button>
+                                        </form>
+                                    </div>
+                                    <%}%>
+                            </div>
+                            <hr>
+                            <%}%>
+                            <div class="col-8 mb-3">
+                                <h3>Were You Will Be</h3>
+                                <input id="pac-input" type="text" placeholder="Search for a place">
+                                <div id="map" style="width: 80vh; height: 400px;"></div>
+                              </div>
             </div>
-            <button class="btn btn-outline-dark">Submit</button>
-        </form>
-        <hr>
-<%}%>
-        <h4> All Reviews </h4>
-        <div class="row">
-            <%for(review of listing.reviews){%>
-            <div class="card col-5 ms-3 mb-3">
-                <div class="card-body mt-3">
-                    <h5 class="card-title"><%=review.author.username%></h5>
-                    <p class="card-text"><%=review.comment%></p>
-                    <!-- <p class="card-text"> star</p> -->
-                    <p class="starability-result card-text" data-rating="<%=review.rating%>"></p>
-                </div>
-            <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST" class="mb-3 text-end">
-                <button class="btn btn-sm btn-dark">Delete</button>
-            </form>
-            </div>
-          <%}%> 
-        </div>
-    </div>
+
+<!-- for map -->
+<script async defer
+    src="https://maps.gomaps.pro/maps/api/js?key=<%= process.env.MAP_API_KEY %>&libraries=geometry,places&callback=initMap">
+</script>
+
+<script>
+ 
+        let map;
+        let autocomplete;
+ 
+        function initMap() {
+            // Create the map centered on a default location
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.8688, lng: 151.2195 }, // Default to Sydney, Australia
+                zoom: 13
+            });
+ 
+            const input = document.getElementById('pac-input');
+ 
+            // Create the autocomplete object and bind it to the input field
+            autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+ 
+            // Set up the event listener for when the user selects a place
+            autocomplete.addListener('place_changed', () => {
+                const place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    console.log("No details available for the input: '" + place.name + "'");
+                    return;
+                }
+ 
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17); // Zoom to 17 if the place has no viewport
+                }
+ 
+                // Place a marker on the selected location
+                new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: map
+                });
+            });
+        }
+    </script>
+              
