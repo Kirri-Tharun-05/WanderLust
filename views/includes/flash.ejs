@@ -1,4 +1,5 @@
-<%if(successMsg && successMsg.length){%>
+
+<!-- <%if(successMsg && successMsg.length){%>
     <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
         <%= successMsg%>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -9,4 +10,20 @@
         <%= errorMsg%>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-<%}%>
+<%}%> -->
+
+<div class="container mt-3">
+    <% if (successMsg && successMsg.length) { %>
+        <div class="alert alert-success alert-dismissible fade show col-lg-6 col-md-8 col-sm-10 col-12 mx-auto text-center" role="alert">
+            <%= successMsg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if (errorMsg && errorMsg.length) { %>
+        <div class="alert alert-danger alert-dismissible fade show col-lg-6 col-md-8 col-sm-10 col-12 mx-auto text-center" role="alert">
+            <%= errorMsg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+</div>
