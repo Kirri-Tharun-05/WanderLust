@@ -145,3 +145,132 @@ transition: 0.2s ease-in-out ;
     background-color: #D7D3BF; /* Same as navbar */
     padding: 1rem; /* Adds space inside expanded menu */
 }
+
+/* Scroll bar */
+/* For WebKit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: none;
+}
+
+/* For Edge and IE */
+body {
+    -ms-overflow-style: none;
+}
+
+ /* General styling for responsiveness */
+
+ @media screen and (max-width: 1030px) {
+    #map {
+        width: 100% !important;
+    }
+
+    .col-8,
+    .col-6,
+    .offset-3 {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 15px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #map {
+        width: 100% !important;
+    }
+
+    .col-8,
+    .col-6,
+    .offset-3 {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 15px;
+    }
+
+    .listing-card {
+        width: 100%;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .offset-2 {
+        margin-left: 0 !important;
+    }
+
+    .card.col-5 {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+    .stars{
+        margin-bottom:2rem !important ;
+       }
+}
+
+@media screen and (max-width: 768px) {
+
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    .show-img,
+    #map {
+        width: 100% !important;
+        height: auto;
+    }
+
+    .row {
+        margin: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+    }
+    .stars{
+        margin-bottom:2rem !important ;
+       }
+}
+
+@media screen and (max-width: 480px) {
+    .listing-card {
+        width: 100%;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #map {
+        height: 250px;
+    }
+    .stars{
+        margin-bottom:2rem !important ;
+       }
+}

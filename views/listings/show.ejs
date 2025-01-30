@@ -30,7 +30,7 @@
         <div class="btns offset-3 mb-3">
             <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark">Edit the Listing</a>
             <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
-                <button class="btn btn-dark offset-2">Delete</button>
+                <button class="btn btn-dark offset-3" >Delete</button>
             </form>
         </div>
         <%}%>
@@ -79,7 +79,7 @@
                                             <p class="card-text">
                                                 <%=review.comment%>
                                             </p>
-                                            <p class="starability-result card-text" data-rating="<%=review.rating%>">
+                                            <p class="starability-result card-text stars" data-rating="<%=review.rating%>">
                                             </p>
                                         </div>
                                         <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
@@ -91,21 +91,20 @@
                             </div>
                             <hr>
                             <%}%>
-                            <div class="col-8 mb-3">
-                                <h3>Were You Will Be</h3>
-                                <!-- <input id="pac-input" type="text" placeholder="Search for a place">  -->
-                                <div id="map" style="width: 80vh; height: 400px;"></div>
-                            </div>
-                        </div> 
+                                <div class="col-8 mb-3">
+                                    <h3>Were You Will Be</h3>
+                                    <!-- <input id="pac-input" type="text" placeholder="Search for a place">  -->
+                                    <div id="map" style="width: 80vh; height: 400px; margin-bottom: 1rem;"></div>
+                                </div>
+            </div>
 
-<!-- for map -->
-<script>
-    let listingLocation = "<%= listing.location %>";
-    let listingCountry = "<%= listing.country %>";
-</script>
-<script async defer
-    src="https://maps.gomaps.pro/maps/api/js?key=<%= process.env.MAP_API_KEY %>&libraries=geometry,places&callback=initMap">
-</script>
+            <!-- for map -->
+            <script>
+                let listingLocation = "<%= listing.location %>";
+                let listingCountry = "<%= listing.country %>";
+            </script>
+            <script async defer
+                src="https://maps.gomaps.pro/maps/api/js?key=<%= process.env.MAP_API_KEY %>&libraries=geometry,places&callback=initMap">
+                </script>
 
-<script src="/javaScript/map.js"></script>
-              
+            <script src="/javaScript/map.js"></script>

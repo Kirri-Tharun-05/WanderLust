@@ -97,6 +97,7 @@ main().then(() => { console.log("Connection Successful") }).catch((err) => { err
 
 async function main() {
     await mongoose.connect(dbUrl);
+    // await mongoose.connect(mongo_URL);
 }
 
 // app.get("/", (req, res) => {
