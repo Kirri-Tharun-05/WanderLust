@@ -31,19 +31,36 @@
                 <input class="form-control" type="file" name="listing[image]" id="">
             </div>
             <div class="row">
-            <div class="mb-3 col-4">
+                <div class="mb-3 col-md-6">
+                    <label for="location" class="form-label">Category : </label>
+                    <select id="category" name="listing[category]" class="form-select" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="Beach">Beach</option>
+                        <option value="Mountain">Mountain</option>
+                        <option value="Lake">Lake</option>
+                        <option value="Pool">Pool</option>
+                    </select>
+                    <div class="invalid-feedback">Choose A Valid Category!</div>
+                </div>
+            <div class="mb-3 col-md-6">
                 <label for="price" class="form-label">Price : </label>
                 <input class="form-control" type="number" name="listing[price]" id="" value="<%=listing.price%>" required>
-            </div>
-            <div class="mb-3 col-8" >
-                <label for="location" class="form-label">Location : </label>
-                <input class="form-control" type="text" name="listing[location]" id="" value="<%=listing.location%>" required>
+                <div class="invalid-feedback">Enter A Valid Price!</div>
             </div>
         </div>
-            <div class="mb-3">
+        <div class="row">
+            <div class="mb-3 col-md-6" >
+                <label for="location" class="form-label">Location : </label>
+                <input class="form-control" type="text" name="listing[location]" id="" value="<%=listing.location%>" required>
+                <div class="invalid-feedback">Enter A Valid Location!</div>
+            </div>
+            <div class="mb-3 col-md-6">
                 <label for="country" class="form-label">Country : </label>
                 <input class="form-control" type="text" name="listing[country]" id="" value="<%=listing.country%>" required>
+                <div class="invalid-feedback">Enter A Valid Country!</div>
             </div>
+        </div>
             <button class=" mt-3 mb-3 btn btn-dark">Edit</button>
         </form>
     </div>
